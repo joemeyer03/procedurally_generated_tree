@@ -8,7 +8,6 @@
 ## Description
 The scene includes a procedurally generated tree in a terracotta pot filled with dirt. The tree is slightly different each time as the angles between each addition (branch or leaf) are randomly generated. There are 4 total textures, the terracotta, the dirt, the leaves and the branches. There are also controls to rotate everything around the X, Y and Z axis as well as translate up, down, left, right, forward, and back. A few images are included in the repository and below. They are not extremely different from each other, but in certain instances, the angles can create wide or compact trees
 
-<img width="330" alt="Tree3" src="https://github.com/user-attachments/assets/3700e500-fcda-48ff-84ae-87853493f1b4" />
 <img width="330" alt="Tree2" src="https://github.com/user-attachments/assets/e4d9aed1-c389-421c-9789-df61de80bf59" />
 <img width="330" alt="Tree1" src="https://github.com/user-attachments/assets/6809f0b2-184f-4a2a-8e8a-1b08328a6c3b" />
 
