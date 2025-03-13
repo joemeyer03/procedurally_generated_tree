@@ -1,0 +1,88 @@
+<html>
+<head>
+    <title>CSCI-510: Final Project</title>
+    <!-- vertex Shader -->
+    <script id="shader" type="wgsl">
+        struct VertexOutput {
+                      @builtin(position) aVertexPosition: vec4<f32>,
+                      @location(0) uv : vec2<f32>
+          };
+
+         struct UniformStruct {
+            uModelViewMatrix : mat4x4<f32>,
+         };
+
+         @group(0) @binding(0) var<uniform> uniformStruct : UniformStruct;
+
+         @vertex
+            fn vs_main(
+                      @location(0) inPos: vec3<f32>,
+                      @location(1) inUv : vec2<f32>) -> VertexOutput {
+            var out: VertexOutput;
+
+            // Set the varying to be used inside of the fragment shader
+            out.uv = inUv;
+            out.aVertexPosition =  uniformStruct.uModelViewMatrix * vec4<f32>(inPos.x, inPos.y, inPos.z, 1);
+            return out;
+           }
+
+           @group(0) @binding(1) var TexSampler: sampler;
+           @group(0) @binding(2) var Texture: texture_2d<f32>;
+
+           @fragment
+           fn fs_main(in: VertexOutput) -> @location(0) vec4<f32> {
+                return textureSample(Texture, TexSampler, in.uv);
+           }
+
+    </script>
+
+    <!-- include the main tesselation functions -->
+    <script type="module" src="./final.js"></script>
+</head>
+
+<body>
+  <h1>CSCI-510: Final Project</h1>
+  <table>
+      <tr>
+          <td><canvas id="webgl-canvas" width="500" height="500">
+            Your browser does not support the HTML5 canvas element.
+          </canvas></td>
+          
+          <td>
+              <h3>Controls</h3>
+              
+              <table border="1">
+              <tbody>
+              <tr>
+              <td>x, y, z</td>
+              <td>Rotate the current shape forward about the x, y, or z axis</td>
+              </tr>
+              <tr>
+              <td>X, Y, Z</td>
+              <td>Rotate the current shape backward about the x, y, or z axis</td>
+              </tr>
+              <tr>
+              <td>w, s</td>
+              <td>Translate object away from you or towards you</td>
+              </tr>
+              <tr>
+              <td>a, d</td>
+              <td>Translate left or right</td>
+              </tr>
+              <tr>
+              <td>+, -</td>
+              <td>Translate up or down</td>
+              </tr>
+              <td>r, R</td>
+              <td>Reset the figure to its original orientation</td>
+              </tr>
+              </tbody>
+              </table>
+              
+          </td>
+      </tr>
+  </table>
+  
+</body>
+</html>
+
